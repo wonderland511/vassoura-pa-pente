@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="color-scheme" content="dark light">
+<title>Веник и совок с гребнем</title>
+<style>
+:root{
+  --bg:#0b0b0c; --bg2:#151517; --card:#1a1a1c; --line:#2c2c30; --text:#f5f5f7; --muted:#a1a1a6;
+  --accent:#ff9f0a; --accent-ink:#2a1700; --good:#30d158; --bad:#ff6961; --warn:#ffd60a; --photo:#ffffff;
+  --glow:rgba(255,159,10,.15); --radius:22px;
+}
+@media (prefers-color-scheme: light){
+  :root{ --bg:#f5f5f7; --bg2:#ececef; --card:#ffffff; --line:#e3e3e8; --text:#1d1d1f; --muted:#6e6e73;
+    --accent:#b35900; --accent-ink:#ffffff; --good:#1f8f3a; --bad:#d63a2f; --warn:#8a6100; --glow:rgba(179,89,0,.09); }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+@keyframes fadeInUp{ from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
+.reveal{animation:fadeInUp .6s ease-out both}
+.reveal.d1{animation-delay:.08s}.reveal.d2{animation-delay:.16s}.reveal.d3{animation-delay:.24s}.reveal.d4{animation-delay:.32s}
+@media (prefers-reduced-motion: reduce){ .reveal{animation:none;opacity:1;transform:none} }
+
+header.hero{padding:60px 0 20px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.05;letter-spacing:-.025em;margin:12px 0 14px;font-weight:700}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:800px;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{border:1px solid var(--line);background:var(--bg2);border-radius:999px;padding:7px 14px;font-size:14px}
+
+.note{margin:22px 0 0;border-radius:18px;padding:18px 20px;background:linear-gradient(135deg,var(--glow),transparent 70%),var(--card);border:1px solid var(--line);font-size:15.5px}
+.note p{margin:6px 0}
+.note a{color:var(--accent);font-weight:600}
+
+section{padding:40px 0 8px}
+h2.sec{font-size:clamp(26px,3.6vw,36px);letter-spacing:-.02em;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 22px}
+.sec-head{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.sticker{width:116px;height:116px;flex:0 0 auto;border-radius:50%;border:4px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.35);object-fit:cover;transform:rotate(-8deg)}
+@media (max-width:620px){ .sticker{width:84px;height:84px} }
+
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:stretch}
+@media (max-width:760px){ .grid{grid-template-columns:1fr} }
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.card.top{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 20px 50px -20px var(--glow)}
+.card .body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px}
+.badge.alt{background:var(--bg2);color:var(--text);border:1px solid var(--line)}
+.toplabel{position:absolute;left:12px;top:12px;z-index:2}
+.rank{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
+.card h3{margin:-4px 0 0;font-size:21px;letter-spacing:-.015em;line-height:1.2}
+.desc{margin:0;color:var(--muted);font-size:15.5px}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tag.ok{color:var(--good);border-color:color-mix(in srgb,var(--good) 40%,transparent)}
+.tag.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pbox{background:var(--bg2);border-radius:14px;padding:10px 12px}
+.pbox small{display:block;color:var(--muted);font-size:12px;line-height:1.35}
+.pbox b{font-size:22px;letter-spacing:-.02em;display:block;line-height:1.25;margin-top:2px}
+.pbox span{font-size:13.5px;color:var(--muted)}
+.pbox.main{background:var(--glow);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent)}
+.pbox.na b{font-size:17px}
+.pmeta{font-size:13.5px;color:var(--muted);margin-top:-4px}
+.pc{display:grid;grid-template-columns:1fr;gap:12px}
+.pc h4{margin:0 0 4px;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.pc .plus h4{color:var(--good)} .pc .minus h4{color:var(--bad)}
+.pc ul{margin:0;padding:0;list-style:none}
+.pc li{position:relative;padding-left:20px;margin:5px 0;font-size:15px;line-height:1.45}
+.pc .plus li::before{content:"+";position:absolute;left:2px;color:var(--good);font-weight:700}
+.pc .minus li::before{content:"−";position:absolute;left:2px;color:var(--bad);font-weight:700}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 20px;border-radius:14px;font-weight:600;text-decoration:none;font-size:16px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);flex:1 1 auto;transition:filter .2s}
+.btn:hover{filter:brightness(1.08)}
+.btn.alt{background:var(--bg2);color:var(--text);border-color:var(--line)}
+.btn.alt:hover{border-color:var(--accent)}
+.btn:focus-visible,.cbtn:focus-visible,.lb button:focus-visible,.slide:focus-visible,.track:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.verdict{margin:24px 0 0;border-radius:var(--radius);padding:24px;background:linear-gradient(135deg,var(--glow),transparent 70%),var(--card);border:1px solid var(--line);display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center}
+.verdict img{width:220px;height:220px;object-fit:contain;background:var(--photo);border-radius:18px}
+.verdict h2{font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;margin:10px 0 8px;line-height:1.15}
+.verdict p{margin:0 0 10px;color:var(--muted)}
+.verdict ul{margin:6px 0 14px;padding-left:20px}.verdict li{margin:3px 0}
+@media (max-width:720px){ .verdict{grid-template-columns:1fr;padding:20px} .verdict img{width:100%;height:240px} }
+
+.car{position:relative;background:var(--photo)}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border:0;background:transparent;padding:0;cursor:zoom-in}
+.slide img{width:100%;height:100%;object-fit:contain;display:block}
+.cbtn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.cbtn.prev{left:10px}.cbtn.next{right:10px}
+.counter,.zoomhint{position:absolute;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px}
+.counter{right:12px}.zoomhint{left:12px;font-weight:500}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:15px}
+th,td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:var(--bg2)}
+tbody th{font-weight:600;color:var(--muted)}
+tr:last-child td,tr:last-child th{border-bottom:0}
+td.low{background:var(--glow)}
+td a{color:var(--accent);font-weight:600}
+@media (max-width:520px){ table{font-size:13.5px;min-width:780px} th,td{padding:11px 10px} tbody th{width:110px;position:sticky;left:0;background:var(--card);z-index:1} }
+.ok{color:var(--good);font-weight:600}.wr{color:var(--warn);font-weight:600}
+
+.lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb figure{margin:0;max-width:min(92vw,960px);max-height:86vh;display:flex;flex-direction:column;align-items:center;gap:10px}
+.lb img{max-width:100%;max-height:78vh;object-fit:contain;background:#fff;border-radius:14px}
+.lb figcaption{color:#ddd;font-size:14px}
+.lb button{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;width:52px;height:52px;border-radius:50%;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb .x{top:16px;right:16px}.lb .l{left:16px;top:50%;transform:translateY(-50%)}.lb .r{right:16px;top:50%;transform:translateY(-50%)}
+@media (max-width:520px){ .lb .l{left:6px}.lb .r{right:6px} .lb button{width:44px;height:44px} }
+
+footer{padding:40px 0 60px;color:var(--muted);font-size:13.5px}
+footer p{margin:6px 0}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">Бразилия · веник и совок</div>
+    <h1 class="reveal d1">Веник и совок с гребнем для чистки веника</h1>
+    <p class="lead reveal d2">Главное условие: на совке должен быть встроенный гребень, которым вычёсывают из веника волосы, нитки и пыль. Здесь четыре варианта и маленький ручной совок в дополнение. Цены я перепроверила 24 ноября 2026 там, где сайт магазина открывается. Mercado Livre и Magalu закрыты для автоматической проверки, поэтому их цены взяты из вашего списка и помечены отдельно.</p>
+    <div class="chips reveal d3">
+      <span class="chip">У всех есть гребень на совке</span>
+      <span class="chip">Цены без доставки, если не указано иное</span>
+      <span class="chip">Курс ЦБ Бразилии (PTAX): R$ 5,9708 за $1 на 23.11.2026</span>
+    </div>
+
+    <div class="verdict reveal d4">
+      <img src="img/flash-1.jpg" alt="Набор Flash Limp Multiclean Pró 4 em 1: веник в совке с гребнем" referrerpolicy="no-referrer">
+      <div>
+        <span class="badge">★ Лучший выбор</span>
+        <h2>Flash Limp Multiclean Pró 4 em 1: R$ 142,99 ≈ $23,95</h2>
+        <p>Это цена на официальном сайте Flash Limp. На Mercado Livre, по вашей таблице, набор есть от R$ 94,33 ≈ $15,80.</p>
+        <ul>
+          <li>Зубцы на совке снимают с веника волосы, нитки и пыль, руками ничего вытаскивать не надо.</li>
+          <li>Кроме веника и совка в наборе есть сгон для воды и щётка для пола. Всё хранится вертикально, одним блоком.</li>
+          <li>Известный бразильский бренд, на официальном сайте в наличии 10 штук.</li>
+        </ul>
+        <div class="btns" style="margin-top:0">
+          <a class="btn" href="https://www.mercadolivre.com.br/vassoura-4-em-1-multiclean-pro-vassoura-pa-e-esfregao/p/MLB75096776" target="_blank" rel="noopener">Mercado Livre</a>
+          <a class="btn alt" href="https://www.flashlimp.com.br/multiclean-pro-4-em-1-vassoura-pa-e-esfregao/p" target="_blank" rel="noopener">Сайт Flash Limp</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note reveal d4">
+      <p><b>Если нужны только веник и совок</b> и нет смысла платить за сгон и щётку, возьмите <a href="#novica">Bettanin Noviça</a>: веник стоит R$ 31,49 ≈ $5,27, это самый надёжный бренд в списке.</p>
+      <p><b>Для столов и полок</b> отдельно пригодится <a href="#clipa">Clipá Plus</a>: на Amazon он сейчас стоит всего R$ 9,20 ≈ $1,54.</p>
+      <p><b>Даты доставки Amazon</b> показаны для адреса по умолчанию. Точную дату и сумму для вашего CEP магазин покажет при оформлении заказа.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="items">
+  <h2 class="sec reveal">Варианты</h2>
+  <p class="sub reveal d1">Нажмите на фото, чтобы увеличить. Листать можно свайпом, стрелками или клавишами ← →.</p>
+
+  <div class="grid">
+
+    <!-- 1. FLASH LIMP -->
+    <article class="card top reveal" id="flash" data-name="Flash Limp Multiclean Pró 4 em 1">
+      <div class="car">
+        <span class="badge toplabel">★ Лучший выбор</span>
+        <div class="track">
+          <button class="slide" type="button"><img src="img/flash-1.jpg" alt="Набор Multiclean Pró 4 em 1 в сборе" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flash-5.jpg" alt="Пять предметов набора и гребень для чистки щетины" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flash-2.jpg" alt="Веник с мягкой щетиной и гибким основанием" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flash-3.jpg" alt="Щётка для пола, встроенная в совок" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flash-4.jpg" alt="Силиконовый сгон для воды" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flash-7.jpg" alt="Все предметы набора отдельно" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flash-8.jpg" alt="Набор в сложенном виде для хранения" loading="lazy" referrerpolicy="no-referrer"></button>
+        </div>
+      </div>
+      <div class="body">
+        <div class="rank">🥇 1 · Лучший выбор в целом</div>
+        <h3>Flash Limp Multiclean Pró 4 em 1 (MOP5964)</h3>
+        <p class="desc">Набор из веника, совка с гребнем, силиконового сгона для воды и жёсткой щётки для пола. По описанию производителя: веник 126 × 29 см с мягкой щетиной, совок высотой 90 см, сгон и щётка по 24 см. Гарантия 90 дней.</p>
+        <div class="tagrow"><span class="tag ok">Гребень на совке</span><span class="tag ok">Хранится вертикально</span><span class="tag warn">Много лишних насадок</span></div>
+        <div class="prices">
+          <div class="pbox main"><small>Сайт Flash Limp · проверено 24.11</small><b>R$ 142,99</b><span>≈ $23,95</span></div>
+          <div class="pbox"><small>Mercado Livre · из вашей таблицы</small><b>от R$ 94,33</b><span>≈ $15,80</span></div>
+        </div>
+        <div class="pmeta">Magalu, по вашему списку: R$ 159,80 ≈ $26,76 или R$ 139,80 ≈ $23,41 через Pix. Цены Mercado Livre и Magalu проверить не удалось, магазины блокируют автоматический доступ.</div>
+        <div class="pc">
+          <div class="plus"><h4>Плюсы</h4><ul>
+            <li>Зубцы на краю совка вычёсывают волосы, нитки и пыль из щетины, руками ничего снимать не нужно.</li>
+            <li>Длинные ручки, наклоняться не нужно.</li>
+            <li>Сгон и щётка пригодятся для мокрой уборки.</li>
+          </ul></div>
+          <div class="minus"><h4>Минусы</h4><ul>
+            <li>Насадок много. Если нужны только веник и совок, часть из них не пригодится.</li>
+            <li>Отзывов на сайте производителя нет.</li>
+          </ul></div>
+        </div>
+        <div class="btns">
+          <a class="btn" href="https://www.mercadolivre.com.br/vassoura-4-em-1-multiclean-pro-vassoura-pa-e-esfregao/p/MLB75096776" target="_blank" rel="noopener">Mercado Livre · от R$ 94,33</a>
+          <a class="btn alt" href="https://www.flashlimp.com.br/multiclean-pro-4-em-1-vassoura-pa-e-esfregao/p" target="_blank" rel="noopener">Сайт Flash Limp · R$ 142,99</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. NOVIÇA -->
+    <article class="card reveal d1" id="novica" data-name="Bettanin Noviça: веник и совок">
+      <div class="car">
+        <span class="badge alt toplabel">Лучшее качество за свои деньги</span>
+        <div class="track">
+          <button class="slide" type="button"><img src="img/pa-1.jpg" alt="Совок Noviça Pá Coletora с ручкой, цвет cereja" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/vassoura-1.jpg" alt="Веник Noviça Original: щётка с жёсткой и мягкой щетиной" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/vassoura-2.jpg" alt="Веник Noviça Original с ручкой" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/pa-2.jpg" alt="Совок Noviça с ручкой 90 см целиком" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/pa-3.jpg" alt="Совок Noviça: резервуар для мусора с крышкой" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/pa-5.jpg" alt="Совок Noviça спереди" loading="lazy" referrerpolicy="no-referrer"></button>
+        </div>
+      </div>
+      <div class="body">
+        <div class="rank">🥈 2 · Веник и совок по отдельности</div>
+        <h3>Bettanin Noviça: Vassoura Original + Pá Coletora com Cabo</h3>
+        <p class="desc">Веник с двумя видами щетины: жёсткая для крупного мусора, мягкая для мелкой пыли. Совок на ручке 90 см с резервуаром для мусора, который сам закрывается, когда совок поднимают. На ручке колёсики, а на совке есть упор для ноги. Гребень для чистки веника указан в описании совка у Cobasi.</p>
+        <div class="tagrow"><span class="tag ok">Веник 4,6 из 5 · 590 отзывов</span><span class="tag ok">Совок 4,4 из 5 · 228 отзывов</span><span class="tag warn">Совок на Amazon дорогой</span></div>
+        <div class="prices">
+          <div class="pbox main"><small>Веник · Amazon, проверено 24.11</small><b>R$ 31,49</b><span>≈ $5,27</span></div>
+          <div class="pbox"><small>Совок · Amazon, сторонний продавец</small><b>R$ 79,98</b><span>≈ $13,40</span></div>
+        </div>
+        <div class="pmeta">Вместе на Amazon R$ 111,47 ≈ $18,67. Веник продаёт сам Amazon, доставка бесплатная, ближайшая дата — 25 ноября. Совок продают только сторонние магазины, Casa Limpa ABC (R$ 79,98, 70% положительных отзывов) и Casa Limpa (R$ 80,95). Для товара Noviça это дорого, поэтому совок стоит поискать в Cobasi или на Mercado Livre.</div>
+        <div class="pc">
+          <div class="plus"><h4>Плюсы</h4><ul>
+            <li>Самый надёжный бренд из всех вариантов в списке, и у него больше всего отзывов.</li>
+            <li>Мягкая щетина хорошо собирает мелкую пыль.</li>
+            <li>Резервуар совка закрывается, так что мусор не высыпается при переноске.</li>
+          </ul></div>
+          <div class="minus"><h4>Минусы</h4><ul>
+            <li>Веник и совок вдвоём выглядят проще, чем готовый набор.</li>
+            <li>На Amazon совок стоит в 2,5 раза дороже веника.</li>
+          </ul></div>
+        </div>
+        <div class="btns">
+          <a class="btn" href="https://www.amazon.com.br/dp/B0779NWXXQ" target="_blank" rel="noopener">Веник · Amazon</a>
+          <a class="btn alt" href="https://www.amazon.com.br/dp/B07G5JG4KB" target="_blank" rel="noopener">Совок · Amazon</a>
+          <a class="btn alt" href="https://www.cobasi.com.br/pa-coletora-com-cabo-novica-bettanin-31141562/p" target="_blank" rel="noopener">Совок · Cobasi</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. FLYTEX -->
+    <article class="card reveal d2" id="flytex" data-name="Flytex: вертикальный набор">
+      <div class="car">
+        <div class="track">
+          <button class="slide" type="button"><img src="img/flytex-1.jpg" alt="Набор Flytex: веник, совок и составные ручки" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flytex-4.jpg" alt="Гребень на совке Flytex вычёсывает волосы из веника" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flytex-2.jpg" alt="Набор Flytex стоит на полу" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flytex-3.jpg" alt="Веник Flytex с тонкой гибкой щетиной" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flytex-6.jpg" alt="Набор Flytex в сложенном виде у шкафа" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/flytex-5.jpg" alt="Четыре причины выбрать набор Flytex" loading="lazy" referrerpolicy="no-referrer"></button>
+        </div>
+      </div>
+      <div class="body">
+        <div class="rank">🥉 3 · Самый удобный для спины</div>
+        <h3>Flytex: веник и складной совок на ручках из нержавейки</h3>
+        <p class="desc">Вертикальный набор, альтернатива Kelamayi. Длинные ручки из нержавеющей стали, совок стоит сам. На совке гребень с длинными зубцами и резиновая кромка, которая подбирает мусор с пола. Набор складывается для хранения, размер 30 × 130 см.</p>
+        <div class="tagrow"><span class="tag ok">Гребень + резиновая кромка</span><span class="tag ok">Ручки из нержавейки</span><span class="tag warn">Отзывов почти нет</span></div>
+        <div class="prices">
+          <div class="pbox main"><small>Mercado Livre · из вашей таблицы</small><b>R$ 98,90</b><span>≈ $16,56</span></div>
+          <div class="pbox"><small>Amazon · проверено 24.11</small><b>R$ 113,90</b><span>≈ $19,08</span></div>
+        </div>
+        <div class="pmeta">На Amazon продавец Flytex Distribuidora (86% положительных отзывов), отправляет Amazon, доставка бесплатная, ближайшая дата — 1 декабря. У самого набора пока одна оценка. Цену Mercado Livre проверить не удалось.</div>
+        <div class="pc">
+          <div class="plus"><h4>Плюсы</h4><ul>
+            <li>Длинные ручки, наклоняться не нужно.</li>
+            <li>Совок не опрокидывается, веник хранится вставленным в совок.</li>
+            <li>Ручки из нержавеющей стали.</li>
+          </ul></div>
+          <div class="minus"><h4>Минусы</h4><ul>
+            <li>Малоизвестный бренд, на Amazon у набора всего 1 оценка. Качество у таких наборов заметно различается от продавца к продавцу.</li>
+            <li>Kelamayi на Amazon.com.br я не нашла. Два похожих набора (B0D9BQ848N, 4,0 из 5 по 162 отзывам, и B0CGXHK9XP) сейчас недоступны.</li>
+          </ul></div>
+        </div>
+        <div class="btns">
+          <a class="btn" href="https://www.mercadolivre.com.br/vassoura-e-pa-dobravel-em-aco-inox-eficiente/p/MLB29713289" target="_blank" rel="noopener">Mercado Livre · R$ 98,90</a>
+          <a class="btn alt" href="https://www.amazon.com.br/dp/B0GXKXTVQZ" target="_blank" rel="noopener">Amazon · R$ 113,90</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. OXO -->
+    <article class="card reveal d3" id="oxo" data-name="OXO Good Grips Upright Sweep Set">
+      <div class="car">
+        <span class="badge alt toplabel">Трудно купить</span>
+        <div class="track">
+          <button class="slide" type="button"><img src="img/oxo-1.jpg" alt="Набор OXO Good Grips: совок и веник" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/oxo-4.jpg" alt="Совок OXO стоит вертикально, внутри зубцы для чистки веника" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/oxo-3.jpg" alt="Совок OXO фиксируется открытым" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/oxo-2.jpg" alt="Ручки веника и совка защёлкиваются вместе" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/oxo-5.jpg" alt="Размеры: высота 97,7 см, ширина 24,13 см" loading="lazy" referrerpolicy="no-referrer"></button>
+        </div>
+      </div>
+      <div class="body">
+        <div class="rank">4 · Лучший по качеству</div>
+        <h3>OXO Good Grips Upright Sweep Set</h3>
+        <p class="desc">Совок стоит вертикально и фиксируется открытым, чтобы мусор было удобно высыпать. Веник защёлкивается на совке, а зубцы совка вычёсывают грязь и пыль из щетины. Высота 97,7 см, ширина 24,13 см.</p>
+        <div class="tagrow"><span class="tag ok">4,2 из 5 на Amazon.com</span><span class="tag warn">В Бразилии официально не продаётся</span></div>
+        <div class="prices">
+          <div class="pbox na"><small>Amazon.com (США)</small><b>Цена не показана</b><span>доставку в Бразилию проверить не удалось</span></div>
+          <div class="pbox main"><small>Брать, если найдёте дешевле</small><b>R$ 250</b><span>≈ $41,87</span></div>
+        </div>
+        <div class="pmeta">На Amazon.com.br этого набора нет, там продаётся только маленький ручной совок OXO со щёткой. Amazon.com показал сообщение «This item cannot be shipped to your selected delivery location».</div>
+        <div class="pc">
+          <div class="plus"><h4>Плюсы</h4><ul>
+            <li>Продуманная конструкция: совок открыт и не захлопывается, веник защёлкивается на совке.</li>
+            <li>Известный бренд с понятным качеством.</li>
+          </ul></div>
+          <div class="minus"><h4>Минусы</h4><ul>
+            <li>Купить можно только с международной доставкой, а с ней цена, скорее всего, выйдет за бюджет.</li>
+          </ul></div>
+        </div>
+        <div class="btns">
+          <a class="btn alt" href="https://www.amazon.com/dp/B00940DUE0" target="_blank" rel="noopener">Amazon.com (США)</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="clipa">
+  <h2 class="sec reveal">➕ Дополнение: ручной совок</h2>
+  <p class="sub reveal d1">Для столов, полок и мелкого мусора.</p>
+  <div class="grid">
+    <article class="card reveal" data-name="Bettanin Noviça Clipá Plus">
+      <div class="car">
+        <div class="track">
+          <button class="slide" type="button"><img src="img/clipa-1.jpg" alt="Совок Noviça Clipá Plus, цвет тиффани" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/clipa-2.jpg" alt="Clipá Plus прицеплен к ручке веника" loading="lazy" referrerpolicy="no-referrer"></button>
+          <button class="slide" type="button"><img src="img/clipa-3.jpg" alt="Clipá Plus на ручке веника, вид сбоку" loading="lazy" referrerpolicy="no-referrer"></button>
+        </div>
+      </div>
+      <div class="body">
+        <div class="rank">Маленький совок с гребнем</div>
+        <h3>Bettanin Noviça Clipá Plus</h3>
+        <p class="desc">Ручной совок с резиновой кромкой и встроенным гребнем для чистки веника. Изгиб совка не даёт мусору высыпаться, а ручка цепляется на ручку большого веника, так что совок не занимает отдельного места. Вес 91 г.</p>
+        <div class="tagrow"><span class="tag ok">4,6 из 5 · 64 отзыва</span><span class="tag ok">Продаёт Amazon</span></div>
+        <div class="prices">
+          <div class="pbox main"><small>Amazon · проверено 24.11</small><b>R$ 9,20</b><span>≈ $1,54</span></div>
+          <div class="pbox"><small>Цена из вашего списка</small><b>R$ 33,81</b><span>≈ $5,66</span></div>
+        </div>
+        <div class="pmeta">Amazon показывает бесплатную доставку на 1 декабря при первом заказе. Это заметно дешевле, чем в вашем списке, поэтому перед заказом проверьте цену в корзине.</div>
+        <div class="btns">
+          <a class="btn" href="https://www.amazon.com.br/dp/B09JKXCV1Q" target="_blank" rel="noopener">Amazon · R$ 9,20</a>
+          <a class="btn alt" href="https://www.cobasi.com.br/pa-para-lixo-clipa-plus-novica-bettanin-31141651/p" target="_blank" rel="noopener">Cobasi</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="sec-head">
+    <div>
+      <h2 class="sec reveal">Сравнение</h2>
+      <p class="sub reveal d1">Доллары по курсу PTAX R$ 5,9708 за $1 на 23.11.2026. Подсвечен лучший выбор.</p>
+    </div>
+    <img class="sticker"src="img/kotik.jpg" alt="Смешной котёнок сидит в ведре и смотрит вверх" width="116" height="116">
+  </div>
+  <div class="tbl-wrap reveal d2">
+    <table>
+      <thead><tr><th></th><th>Flash Limp 4 em 1 ★</th><th>Noviça веник + совок</th><th>Flytex</th><th>OXO Upright</th><th>Clipá Plus</th></tr></thead>
+      <tbody>
+        <tr><th>Самая низкая цена</th><td class="low"><b>от R$ 94,33</b> ≈ $15,80 (ML, не проверено)</td><td>R$ 111,47 ≈ $18,67 (Amazon)</td><td>R$ 98,90 ≈ $16,56 (ML, не проверено)</td><td>Не показана</td><td><b>R$ 9,20</b> ≈ $1,54</td></tr>
+        <tr><th>Проверенная цена</th><td class="low">R$ 142,99 ≈ $23,95 (сайт Flash Limp)</td><td>R$ 31,49 + R$ 79,98 (Amazon)</td><td>R$ 113,90 ≈ $19,08 (Amazon)</td><td>—</td><td>R$ 9,20 (Amazon)</td></tr>
+        <tr><th>Что в наборе</th><td class="low">Веник, совок, сгон, щётка</td><td>Веник и совок по отдельности</td><td>Веник и совок</td><td>Веник и совок</td><td>Только ручной совок</td></tr>
+        <tr><th>Гребень на совке</th><td class="low ok">Да</td><td class="ok">Да (по описанию Cobasi)</td><td class="ok">Да</td><td class="ok">Да</td><td class="ok">Да</td></tr>
+        <tr><th>Длинная ручка</th><td class="low ok">Да, веник 126 см</td><td class="ok">Да, совок 90 см</td><td class="ok">Да</td><td class="ok">Да, 97,7 см</td><td class="wr">Нет</td></tr>
+        <tr><th>Рейтинг</th><td class="low">Нет данных</td><td>4,6 (590) и 4,4 (228)</td><td>5,0 (1 оценка)</td><td>4,2 на Amazon.com</td><td>4,6 (64)</td></tr>
+        <tr><th>Где купить</th><td class="low"><a href="https://www.mercadolivre.com.br/vassoura-4-em-1-multiclean-pro-vassoura-pa-e-esfregao/p/MLB75096776" target="_blank" rel="noopener">ML</a> · <a href="https://www.flashlimp.com.br/multiclean-pro-4-em-1-vassoura-pa-e-esfregao/p" target="_blank" rel="noopener">Flash Limp</a></td><td><a href="https://www.amazon.com.br/dp/B0779NWXXQ" target="_blank" rel="noopener">Веник</a> · <a href="https://www.amazon.com.br/dp/B07G5JG4KB" target="_blank" rel="noopener">Совок</a></td><td><a href="https://www.mercadolivre.com.br/vassoura-e-pa-dobravel-em-aco-inox-eficiente/p/MLB29713289" target="_blank" rel="noopener">ML</a> · <a href="https://www.amazon.com.br/dp/B0GXKXTVQZ" target="_blank" rel="noopener">Amazon</a></td><td><a href="https://www.amazon.com/dp/B00940DUE0" target="_blank" rel="noopener">Amazon.com</a></td><td><a href="https://www.amazon.com.br/dp/B09JKXCV1Q" target="_blank" rel="noopener">Amazon</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Цены и наличие на Amazon.com.br и на сайте Flash Limp проверены 24.11.2026. Цены Mercado Livre и Magalu взяты из вашего списка: эти магазины блокируют автоматическую проверку. Курс доллара — PTAX Банка Бразилии на 23.11.2026, курс за 24.11 на момент проверки ещё не опубликован.</p>
+    <p>Фото: Flash Limp (flashlimp.com.br), Amazon.com.br, Amazon.com.</p>
+    <p>Стикер: «Cat in a Bucket 1», автор Marion Doss, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>, Wikimedia Commons (обрезано).</p>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+  <button class="x" type="button" aria-label="Закрыть">×</button>
+  <button class="l" type="button" aria-label="Предыдущее фото">‹</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="r" type="button" aria-label="Следующее фото">›</button>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('.car').forEach(function(car){
+    var track = car.querySelector('.track');
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
+    var n = slides.length;
+    var hint = document.createElement('span'); hint.className='zoomhint'; hint.textContent='Нажмите, чтобы увеличить'; car.appendChild(hint);
+    function idx(){ return Math.round(track.scrollLeft / Math.max(1, track.clientWidth)); }
+    function go(i){ i=(i+n)%n; track.scrollTo({left:i*track.clientWidth, behavior:'smooth'}); }
+    if (n > 1) {
+      var counter = document.createElement('span'); counter.className='counter'; car.appendChild(counter);
+      var prev = document.createElement('button'); prev.className='cbtn prev'; prev.type='button'; prev.setAttribute('aria-label','Предыдущее фото'); prev.textContent='‹';
+      var next = document.createElement('button'); next.className='cbtn next'; next.type='button'; next.setAttribute('aria-label','Следующее фото'); next.textContent='›';
+      car.appendChild(prev); car.appendChild(next);
+      var upd = function(){ counter.textContent=(idx()+1)+' / '+n; };
+      prev.addEventListener('click', function(){ go(idx()-1); });
+      next.addEventListener('click', function(){ go(idx()+1); });
+      track.addEventListener('scroll', function(){ window.requestAnimationFrame(upd); }, {passive:true});
+      track.tabIndex = 0;
+      track.addEventListener('keydown', function(e){ if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1);} if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1);} });
+      upd();
+    }
+    slides.forEach(function(s,i){
+      var img=s.querySelector('img');
+      img.addEventListener('error', function(){ s.style.display='none'; });
+      s.addEventListener('click', function(){ openLb(slides.map(function(x){return x.querySelector('img');}), i, car.closest('.card').getAttribute('data-name')); });
+    });
+  });
+
+  var lb=document.getElementById('lb'), lbImg=lb.querySelector('img'), cap=lb.querySelector('figcaption');
+  var list=[], cur=0, title='', lastFocus=null;
+  function show(){ var im=list[cur]; lbImg.src=im.getAttribute('src'); lbImg.alt=im.alt; cap.textContent=title+' · '+(cur+1)+' / '+list.length; var many=list.length>1; lb.querySelector('.l').style.display=many?'':'none'; lb.querySelector('.r').style.display=many?'':'none'; }
+  function openLb(imgs,i,t){ list=imgs; cur=i; title=t||''; lastFocus=document.activeElement; show(); lb.classList.add('open'); document.body.style.overflow='hidden'; lb.querySelector('.x').focus(); }
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
+  function step(d){ cur=(cur+d+list.length)%list.length; show(); }
+  lb.querySelector('.x').addEventListener('click', closeLb);
+  lb.querySelector('.l').addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
+  lb.querySelector('.r').addEventListener('click', function(e){ e.stopPropagation(); step(1); });
+  lb.addEventListener('click', function(e){ if(e.target===lb || e.target.tagName==='FIGURE') closeLb(); });
+  document.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') step(-1); if(e.key==='ArrowRight') step(1); });
+  var sx=null; lb.addEventListener('touchstart', function(e){ sx=e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', function(e){ if(sx===null) return; var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50) step(dx<0?1:-1); sx=null; });
+})();
+</script>
+
+<script type="module">
+// Framer Motion (motion): только hover/tap, видимость контента от него не зависит
+(async () => {
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const { animate } = await import("https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm");
+    document.querySelectorAll('.btn, .cbtn').forEach(el => {
+      el.addEventListener('pointerenter', () => animate(el, { scale: 1.03 }, { duration: .18 }));
+      el.addEventListener('pointerleave', () => animate(el, { scale: 1 }, { duration: .18 }));
+      el.addEventListener('pointerdown', () => animate(el, { scale: .96 }, { duration: .1 }));
+      el.addEventListener('pointerup', () => animate(el, { scale: 1.03 }, { duration: .12 }));
+    });
+    const st = document.querySelector('.sticker');
+    if (st) {
+      st.addEventListener('pointerenter', () => animate(st, { rotate: [-8, 5, -4, -8], scale: [1, 1.08, 1] }, { duration: .7 }));
+      st.addEventListener('pointerdown', () => animate(st, { rotate: [-8, 8, -8], scale: [1, 1.12, 1] }, { duration: .5 }));
+    }
+  } catch (e) { /* без анимаций страница работает так же */ }
+})();
+</script>
+</body>
+</html>
